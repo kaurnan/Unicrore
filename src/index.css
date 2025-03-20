@@ -1,0 +1,383 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 270 70% 40%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 45 93% 47%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 270 70% 40%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 270 70% 40%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 45 93% 47%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 270 70% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  .button-hover-effect {
+    @apply relative overflow-hidden transition-all duration-300 ease-out active:scale-95;
+  }
+
+  .button-hover-effect::after {
+    @apply absolute inset-0 w-full h-full bg-white opacity-0 transition-opacity duration-300 ease-out content-[''];
+  }
+
+  .button-hover-effect:hover::after {
+    @apply opacity-20;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-effect {
+    @apply bg-white/30 backdrop-blur-md border border-white/40;
+  }
+
+  .section-container {
+    @apply w-full max-w-7xl mx-auto px-6 md:px-12;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-900;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto;
+  }
+
+  .trading-chart-animation {
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .ticker-tape {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .ticker-tape-content {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+    padding-right: 2rem;
+  }
+
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .pulse-dot {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Gen Z-friendly neon glow effects */
+  .neon-glow {
+    text-shadow: 0 0 5px rgba(124, 58, 237, 0.5), 0 0 10px rgba(124, 58, 237, 0.3), 0 0 15px rgba(124, 58, 237, 0.2);
+  }
+
+  .neon-box {
+    box-shadow: 0 0 5px rgba(124, 58, 237, 0.5), 0 0 10px rgba(124, 58, 237, 0.3), 0 0 15px rgba(124, 58, 237, 0.2);
+  }
+
+  /* Interactive hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.1), 0 8px 10px -6px rgba(124, 58, 237, 0.1);
+  }
+
+  /* Animated background */
+  .animated-bg {
+    background: linear-gradient(-45deg, #7c3aed, #8b5cf6, #f59e0b, #fbbf24);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fade-in 0.7s ease-out forwards;
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.7s ease-out forwards;
+}
+
+.fade-in-left {
+  animation: fade-in-left 0.7s ease-out forwards;
+}
+
+.fade-in-right {
+  animation: fade-in-right 0.7s ease-out forwards;
+}
+
+.scale-in {
+  animation: scale-in 0.7s ease-out forwards;
+}
+
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Custom bounce animation for the circle arrow */
+@keyframes custom-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: custom-bounce 2s ease-in-out infinite;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(20px);
+}
+
+.animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gen Z-friendly animations */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-shake:hover {
+  animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-3px, 3px);
+  }
+  40% {
+    transform: translate(-3px, -3px);
+  }
+  60% {
+    transform: translate(3px, 3px);
+  }
+  80% {
+    transform: translate(3px, -3px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.animate-glitch:hover {
+  animation: glitch 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
