@@ -1,11 +1,31 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
-const Confetti = () => {
+interface ConfettiProps {
+  active: boolean;
+  duration?: number;
+}
+
+const Confetti = ({ active, duration = 5000 }: ConfettiProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isActive, setIsActive] = useState(false)
+
+  // Control confetti visibility based on active prop
+  useEffect(() => {
+    if (active) {
+      setIsActive(true)
+      const timer = setTimeout(() => {
+        setIsActive(false)
+      }, duration)
+      return () => clearTimeout(timer)
+    }
+    return undefined
+  }, [active, duration])
 
   useEffect(() => {
+    if (!isActive) return
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -51,6 +71,8 @@ const Confetti = () => {
       })
     }
 
+    let animationId: number
+
     const update = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -80,7 +102,7 @@ const Confetti = () => {
         }
       }
 
-      requestAnimationFrame(update)
+      animationId = requestAnimationFrame(update)
     }
 
     update()
@@ -95,8 +117,11 @@ const Confetti = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize)
+      cancelAnimationFrame(animationId)
     }
-  }, [])
+  }, [isActive])
+
+  if (!isActive) return null
 
   return (
     <canvas
@@ -108,4 +133,3 @@ const Confetti = () => {
 }
 
 export default Confetti
-

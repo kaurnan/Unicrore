@@ -1,11 +1,8 @@
-"use client"
-
 import { useEffect, useRef, useState } from "react"
-import { ArrowRight, ChevronDown, Zap, Rocket } from "lucide-react"
+import { ArrowRight, ChevronDown, Zap } from "lucide-react"
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -111,22 +108,6 @@ const Hero = () => {
     }
   }, [])
 
-  // Handle scroll event to change ticker position
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
-
   // Stock ticker data
   const tickerSymbols = [
     { symbol: "AAPL", price: "178.72", change: "+1.32%" },
@@ -143,35 +124,6 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Canvas for animated charts */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-40" />
-
-      {/* Live ticker tape - Made sticky with transition */}
-      <div
-        className={`fixed w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2 ticker-tape z-50 transition-all duration-500 ${
-          isScrolled ? "top-0" : "bottom-[5%]"
-        }`}
-      >
-        <div className="ticker-tape-content">
-          {tickerSymbols.map((stock, index) => (
-            <span key={index} className="inline-flex items-center mx-6">
-              <strong>{stock.symbol}</strong>
-              <span className="ml-2">{stock.price}</span>
-              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
-                {stock.change}
-              </span>
-            </span>
-          ))}
-          {/* Duplicate to ensure smooth transition */}
-          {tickerSymbols.map((stock, index) => (
-            <span key={`repeat-${index}`} className="inline-flex items-center mx-6">
-              <strong>{stock.symbol}</strong>
-              <span className="ml-2">{stock.price}</span>
-              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
-                {stock.change}
-              </span>
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* Content */}
       <div className="relative z-10 section-container flex flex-col items-center justify-center text-center pt-20">
@@ -204,7 +156,6 @@ const Hero = () => {
             href="#services"
             className="button-hover-effect bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-3 rounded-md shadow-sm font-medium flex items-center justify-center hover-lift animate-shake"
           >
-            {/* <Rocket className="mr-2 w-4 h-4" /> */}
             Explore Services
             <ArrowRight className="ml-2 w-4 h-4" />
           </a>
@@ -215,13 +166,39 @@ const Hero = () => {
             About Us
           </a>
         </div>
-
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#services" className="text-purple-500 flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full border-2 border-purple-400/50 flex items-center justify-center neon-box">
-              <ChevronDown className="w-5 h-5 text-purple-400" />
-            </div>
-          </a>
+      </div>
+      
+      {/* Bouncing arrow */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#services" className="text-purple-500 flex flex-col items-center">
+          <div className="w-10 h-10 rounded-full border-2 border-purple-400/50 flex items-center justify-center neon-box">
+            <ChevronDown className="w-5 h-5 text-purple-400" />
+          </div>
+        </a>
+      </div>
+      
+      {/* Full-width ticker tape - positioned absolutely at the bottom */}
+      <div className="absolute bottom-0 left-0 right-0 w-screen bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2 ticker-tape z-40">
+        <div className="ticker-tape-content">
+          {tickerSymbols.map((stock, index) => (
+            <span key={index} className="inline-flex items-center mx-6">
+              <strong>{stock.symbol}</strong>
+              <span className="ml-2">{stock.price}</span>
+              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
+                {stock.change}
+              </span>
+            </span>
+          ))}
+          {/* Duplicate to ensure smooth transition */}
+          {tickerSymbols.map((stock, index) => (
+            <span key={`repeat-${index}`} className="inline-flex items-center mx-6">
+              <strong>{stock.symbol}</strong>
+              <span className="ml-2">{stock.price}</span>
+              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
+                {stock.change}
+              </span>
+            </span>
+          ))}
         </div>
       </div>
     </section>
@@ -229,4 +206,3 @@ const Hero = () => {
 }
 
 export default Hero
-
