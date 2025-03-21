@@ -125,39 +125,6 @@ const Hero = () => {
       {/* Canvas for animated charts */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-40" />
 
-<<<<<<< HEAD
-=======
-      {/* Live ticker tape - Made sticky with transition */}
-      <div
-        className={`fixed w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2 ticker-tape z-50 transition-all duration-500 ${
-          isScrolled ? "top-1 mt-16" : "bottom-[5%]"
-        }`}
-        style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
-      >
-        <div className="ticker-tape-content">
-          {tickerSymbols.map((stock, index) => (
-            <span key={index} className="inline-flex items-center mx-6">
-              <strong>{stock.symbol}</strong>
-              <span className="ml-2">{stock.price}</span>
-              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
-                {stock.change}
-              </span>
-            </span>
-          ))}
-          {/* Duplicate to ensure smooth transition */}
-          {tickerSymbols.map((stock, index) => (
-            <span key={`repeat-${index}`} className="inline-flex items-center mx-6">
-              <strong>{stock.symbol}</strong>
-              <span className="ml-2">{stock.price}</span>
-              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
-                {stock.change}
-              </span>
-            </span>
-          ))}
-        </div>
-      </div>
-
->>>>>>> 9fc48b51bd164c387d2d20f56951f28e920676b1
       {/* Content */}
       <div className="relative z-10 section-container flex flex-col items-center justify-center text-center pt-20">
         <div className="inline-flex items-center rounded-full border border-purple-300/20 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm text-purple-600 mb-8 animate-fade-in hover-lift">
