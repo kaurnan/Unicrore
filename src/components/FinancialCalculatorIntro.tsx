@@ -54,12 +54,12 @@ const FinancialCalculatorHook = ({ onStart }: FinancialHookProps) => {
   return (
     <section className="py-16 bg-gradient-to-b from-purple-50 to-white">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="absolute top-4 right-4 md:top-8 md:right-8">
+        {/* <div className="absolute top-4 right-4 md:top-8 md:right-8">
           <Badge variant="outline" className="bg-green-100 text-green-800 border-green-200 flex items-center gap-1 px-3 py-1.5 text-sm font-medium">
             <Gift className="h-4 w-4 mr-1" />
             100% Free
           </Badge>
-        </div>
+        </div> */}
         
         <AnimatedSection className="text-center mb-12 animate-fade-in-up">
           <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-800 mb-6">
