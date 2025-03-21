@@ -147,8 +147,9 @@ const Hero = () => {
       {/* Live ticker tape - Made sticky with transition */}
       <div
         className={`fixed w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2 ticker-tape z-50 transition-all duration-500 ${
-          isScrolled ? "top-0" : "bottom-[5%]"
+          isScrolled ? "top-1 mt-16" : "bottom-[5%]"
         }`}
+        style={{ boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' }}
       >
         <div className="ticker-tape-content">
           {tickerSymbols.map((stock, index) => (
