@@ -66,12 +66,12 @@ const FinancialCalculatorHook = ({ onStart }: FinancialHookProps) => {
             Begin Your Financial Freedom Journey
           </h2>
 
-          <div className="flex justify-center mb-4">
+          {/* <div className="flex justify-center mb-4">
             <Badge className="bg-green-100 text-green-800 border-green-200 flex items-center gap-1 px-4 py-2 text-base font-medium">
               <Gift className="h-5 w-5 mr-1" />
               Completely Free Financial Planning Tool
             </Badge>
-          </div>
+          </div> */}
 
           <div className="relative h-24 mb-8 overflow-hidden">
             {quotes.map((quote, index) => (
@@ -101,11 +101,11 @@ const FinancialCalculatorHook = ({ onStart }: FinancialHookProps) => {
         <AnimatedSection className="max-w-4xl mx-auto animate-fade-in-up" delay={200}>
           <Card className="border-purple-200 shadow-lg overflow-hidden">
             <div className="bg-gradient-to-r from-purple-600 to-purple-800 p-6 relative">
-              <div className="absolute top-4 right-4">
+              {/* <div className="absolute top-4 right-4">
                 <Badge className="bg-green-500 text-white border-0">
                   Free
                 </Badge>
-              </div>
+              </div> */}
               <h3 className="text-2xl font-bold text-white text-center">Take control of your financial future in just 2 minutes.</h3>
               {/* <p className="text-purple-100">Our calculator will help you plan for:</p> */}
             </div>
@@ -141,10 +141,9 @@ const FinancialCalculatorHook = ({ onStart }: FinancialHookProps) => {
                 <div className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
                   <div>
-                    <h4 className="font-medium text-green-800 mb-1">100% Free Financial Planning</h4>
+                    <h4 className="font-medium text-green-800 mb-1">Transforming Financial Futures</h4>
                     <p className="text-sm text-green-700">
-                      We believe everyone deserves access to quality financial planning. That's why our calculator is completely free to use, with no hidden fees or subscriptions.
-                    </p>
+                      Our calculator has helped thousands of users achieve their financial goals. With over 15,000 successful financial plans created, our tool provides actionable insights that have transformed how people manage their investments.                    </p>
                   </div>
                 </div>
               </div>
@@ -172,7 +171,7 @@ const FinancialCalculatorHook = ({ onStart }: FinancialHookProps) => {
 
               <button
                 onClick={onStart}
-                className="w-full flex items-center justify-center px-6 py-4 border border-transparent rounded-xl shadow-md text-base font-medium text-white bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 transform hover:scale-[1.02]"
+                className="w-full flex items-center justify-center px-6 py-4 border border-transparent rounded-xl shadow-md text-base font-medium text-white bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 button-hover-effect hover-lift"
               >
                 Start Your Free Financial Plan
                 <ArrowRight className="ml-2 h-5 w-5" />

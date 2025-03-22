@@ -65,5 +65,32 @@ const AnimatedSection = ({
   )
 }
 
-export default AnimatedSection
+// New component specifically for counter animations
+interface AnimatedCounterProps {
+  value: number | string
+  className?: string
+  animationComplete?: boolean
+}
 
+export const AnimatedCounter = ({ value, className = "", animationComplete = false }: AnimatedCounterProps) => {
+  // Convert the value to a string to handle it character by character
+  const stringValue = String(value)
+
+  return (
+    <span className={cn("inline-flex", className)}>
+      {stringValue.split("").map((char, index) => (
+        <span
+          key={index}
+          className={cn("inline-block counter-digit", animationComplete ? "counter-complete" : "")}
+          style={{
+            animationDelay: `${index * 0.1}s`,
+          }}
+        >
+          {char}
+        </span>
+      ))}
+    </span>
+  )
+}
+
+export default AnimatedSection

@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -8,10 +8,11 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-display font-bold mb-6 flex items-center">
               <img src="/logo (white).png" alt="Unicrore Logo" className="h-10 w-auto mr-2 brightness-200" />
-              {/* <span className="text-white">
-                <span className="text-accent">Uni</span>crore
-              </span> */}
-              <img src="/wordmark (white).png" alt="Unicrore Written" className="hidden lg:block h-12 w-auto ml-2" />
+              <img 
+                src="/wordmark (white).png" 
+                alt="Unicrore Written" 
+                className="h-12 w-auto ml-2" 
+              />
             </h3>
             <p className="text-purple-200/90 mb-6">
               Expert stock broking services with a personalized approach to help you navigate the financial markets with
@@ -103,8 +104,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
-
+export default Footer;

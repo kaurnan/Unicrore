@@ -46,7 +46,7 @@ const FinancialCalculator = () => {
         <div className="relative pt-1">
           <div className="flex items-center justify-between mb-2">
             <div>
-              <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-purple-200">
+              <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-green-400">
                 Progress
               </span>
             </div>
@@ -54,10 +54,10 @@ const FinancialCalculator = () => {
               <span className="text-medium font-semibold inline-block text-green-600">{Math.round(progress)}%</span>
             </div>
           </div>
-          <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-purple-200">
+          <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-300">
             <div
               style={{ width: `${progress}%` }}
-              className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-purple-600 to-green-800"
+              className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-purple-700 to-purple-800"
             ></div>
           </div>
           <div className="text-xs text-purple-600 text-center">
@@ -102,7 +102,7 @@ const FinancialCalculator = () => {
                     <Calculator className="h-6 w-6 mr-3" />
                     <h3 className="text-xl font-bold">Investment Planning Questionnaire</h3>
                   </div>
-                  <Badge className="bg-green-500 text-white border-0">Free</Badge>
+                  {/* <Badge className="bg-green-500 text-white border-0">Free</Badge> */}
                 </div>
 
                 <div className="p-6 md:p-8">
@@ -149,7 +149,7 @@ const FinancialCalculator = () => {
                         <button
                           type="button"
                           onClick={nextStep}
-                          className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-md text-base font-medium text-white bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 transform hover:scale-[1.02]"
+                          className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-md text-base font-medium text-white bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 transform hover:scale-[1.02]"
                         >
                           Next
                           <ChevronRight className="ml-2 -mr-1 h-5 w-5" />

@@ -1,0 +1,53 @@
+
+/* Counter animation styles */ 
+.counter-digit {
+    display: inline-block;
+    position: relative;
+    animation: slideUpDigit 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideUpDigit {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Add a subtle bounce effect when counter completes */
+.counter-complete {
+    animation: bounceDigit 0.5s ease forwards !important;
+}
+
+@keyframes bounceDigit {
+    0% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(-10px);
+    }
+    40% {
+        transform: translateY(5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+    80% {
+        transform: translateY(2px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Fix for text-transparent issue */
+.text-gradient {
+    background: linear-gradient(to right, #6b46c1, #4a1d96);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}

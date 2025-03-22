@@ -816,7 +816,7 @@ const renderFullReportStep = (
           className="inline-flex items-center px-6 py-3 border border-purple-300 rounded-xl shadow-sm text-base font-bold text-white-700 bg-gradient-to-r from-green-400 to-green-400 bg-white hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200"
         >
           <ArrowRight className="mr-2 h-5 w-5" />
-          Start a New Calculation
+          Begin a New Calculation
         </button>
 
         <Badge className="bg-green-100 text-green-800 border-green-200 flex items-center gap-1 px-3 py-1.5 text-sm font-medium">
