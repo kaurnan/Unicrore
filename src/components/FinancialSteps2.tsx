@@ -43,6 +43,246 @@ interface FinancialSteps2Props {
   viewFullReport: () => void
 }
 
+// Replace the ContactModal component with this fixed version
+const ContactModal = ({
+  formData,
+  handleInputChange,
+  generateReport,
+  isOpen,
+  setIsOpen,
+}: {
+  formData: FinancialFormData
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
+  generateReport: () => void
+  isOpen: boolean
+  setIsOpen: (open: boolean) => void
+}) => {
+  const [emailError, setEmailError] = useState("")
+
+  const validateEmailInput = (email: string) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!emailRegex.test(email) && email.length > 0) {
+      setEmailError("Please enter a valid email address")
+      return false
+    } else {
+      setEmailError("")
+      return email.length > 0 // Return true only if email is not empty
+    }
+  }
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleInputChange(e)
+    validateEmailInput(e.target.value)
+  }
+
+  // Don't call validateEmailInput during render
+  const isFormValid = formData.contactInfo.name && formData.contactInfo.email && formData.contactInfo.phone
+
+  const handleSubmit = () => {
+    // Validate email before submitting
+    if (formData.contactInfo.email && validateEmailInput(formData.contactInfo.email)) {
+      generateReport()
+      setIsOpen(false)
+    }
+  }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Enter Your Contact Details</DialogTitle>
+          <DialogDescription>
+            Please provide your contact information to download your personalized investment report.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="space-y-4 py-4">
+          <div>
+            <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="contact-name"
+              name="contactInfo.name"
+              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Your name"
+              value={formData.contactInfo.name}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="contact-email"
+              name="contactInfo.email"
+              className={`block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500 ${emailError ? "border-red-500" : ""}`}
+              placeholder="Your email"
+              value={formData.contactInfo.email}
+              onChange={handleEmailChange}
+              required
+            />
+            {emailError && <p className="mt-1 text-xs text-red-600">{emailError}</p>}
+          </div>
+
+          <div>
+            <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-700 mb-1">
+              Phone Number <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="tel"
+              id="contact-phone"
+              name="contactInfo.phone"
+              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Your phone number"
+              value={formData.contactInfo.phone}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            type="button"
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+            className="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900"
+          >
+            <Download className="mr-2 h-5 w-5" />
+            Download Report
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+// Replace the DownloadModal component with this fixed version
+const DownloadModal = ({
+  formData,
+  handleInputChange,
+  generateReport,
+  isOpen,
+  setIsOpen,
+}: {
+  formData: FinancialFormData
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
+  generateReport: () => void
+  isOpen: boolean
+  setIsOpen: (open: boolean) => void
+}) => {
+  const [emailError, setEmailError] = useState("")
+
+  const validateEmailInput = (email: string) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!emailRegex.test(email) && email.length > 0) {
+      setEmailError("Please enter a valid email address")
+      return false
+    } else {
+      setEmailError("")
+      return email.length > 0 // Return true only if email is not empty
+    }
+  }
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleInputChange(e)
+    validateEmailInput(e.target.value)
+  }
+
+  // Don't call validateEmailInput during render
+  const isFormValid = formData.contactInfo.name && formData.contactInfo.email && formData.contactInfo.phone
+
+  const handleSubmit = () => {
+    // Validate email before submitting
+    if (formData.contactInfo.email && validateEmailInput(formData.contactInfo.email)) {
+      generateReport()
+      setIsOpen(false)
+    }
+  }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Download Your Report</DialogTitle>
+          <DialogDescription>To proceed with the download, please confirm your contact details.</DialogDescription>
+        </DialogHeader>
+        <div className="space-y-4 py-4">
+          <div>
+            <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="contact-name"
+              name="contactInfo.name"
+              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Your name"
+              value={formData.contactInfo.name}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="contact-email"
+              name="contactInfo.email"
+              className={`block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500 ${emailError ? "border-red-500" : ""}`}
+              placeholder="Your email"
+              value={formData.contactInfo.email}
+              onChange={handleEmailChange}
+              required
+            />
+            {emailError && <p className="mt-1 text-xs text-red-600">{emailError}</p>}
+          </div>
+
+          <div>
+            <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-700 mb-1">
+              Phone Number <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="tel"
+              id="contact-phone"
+              name="contactInfo.phone"
+              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Your phone number"
+              value={formData.contactInfo.phone}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            type="button"
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+            className="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900"
+          >
+            <Download className="mr-2 h-5 w-5" />
+            Download Report
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
 const FinancialSteps2: React.FC<FinancialSteps2Props> = ({
   currentStep,
   formData,
@@ -60,24 +300,26 @@ const FinancialSteps2: React.FC<FinancialSteps2Props> = ({
 }) => {
   const [contactModalOpen, setContactModalOpen] = useState(false)
   const [downloadModalOpen, setDownloadModalOpen] = useState(false)
+
   useEffect(() => {
     // Function to prevent wheel scrolling on number inputs
     const preventScroll = (e: WheelEvent) => {
       const target = e.target as HTMLElement
       if (target.tagName === "INPUT" && (target as HTMLInputElement).type === "number") {
-        e.preventDefault()
+        // Instead of preventDefault, blur the input to lose focus
         target.blur()
       }
     }
 
     // Add the event listener to the document
-    document.addEventListener("wheel", preventScroll, { passive: false })
+    document.addEventListener("wheel", preventScroll)
 
     // Remove the event listener on cleanup
     return () => {
       document.removeEventListener("wheel", preventScroll)
     }
   }, [])
+
   // Return the current step content based on currentStep
   switch (currentStep) {
     case 5:
@@ -85,15 +327,31 @@ const FinancialSteps2: React.FC<FinancialSteps2Props> = ({
     case 6:
       return renderTaxRetirementStep(formData, handleRadioChange, handleInputChange, calculateInvestment)
     case 7:
-      return renderResultsStep(
-        formData,
-        calculationResults,
-        showFullReport,
-        generateReport,
-        setContactModalOpen,
-        setDownloadModalOpen,
-        renderContactModal(formData, handleInputChange, generateReport, contactModalOpen, setContactModalOpen),
-        renderDownloadModal(formData, handleInputChange, generateReport, downloadModalOpen, setDownloadModalOpen),
+      return (
+        <>
+          {renderResultsStep(
+            formData,
+            calculationResults,
+            showFullReport,
+            generateReport,
+            setContactModalOpen,
+            setDownloadModalOpen,
+          )}
+          <ContactModal
+            formData={formData}
+            handleInputChange={handleInputChange}
+            generateReport={generateReport}
+            isOpen={contactModalOpen}
+            setIsOpen={setContactModalOpen}
+          />
+          <DownloadModal
+            formData={formData}
+            handleInputChange={handleInputChange}
+            generateReport={generateReport}
+            isOpen={downloadModalOpen}
+            setIsOpen={setDownloadModalOpen}
+          />
+        </>
       )
     case 8:
       return renderThankYouStep(resetCalculator, showConfetti, viewFullReport)
@@ -400,188 +658,6 @@ const renderTaxRetirementStep = (
   )
 }
 
-// Contact modal component
-const renderContactModal = (
-  formData: FinancialFormData,
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void,
-  generateReport: () => void,
-  isOpen: boolean,
-  setIsOpen: (open: boolean) => void,
-) => {
-  const isFormValid = formData.contactInfo.name && formData.contactInfo.email && formData.contactInfo.phone
-
-  return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Enter Your Contact Details</DialogTitle>
-          <DialogDescription>
-            Please provide your contact information to download your personalized investment report.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="space-y-4 py-4">
-          <div>
-            <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-1">
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="contact-name"
-              name="contactInfo.name"
-              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Your name"
-              value={formData.contactInfo.name}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              id="contact-email"
-              name="contactInfo.email"
-              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Your email"
-              value={formData.contactInfo.email}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-700 mb-1">
-              Phone Number <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="tel"
-              id="contact-phone"
-              name="contactInfo.phone"
-              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Your phone number"
-              value={formData.contactInfo.phone}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => setIsOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            type="button"
-            onClick={() => {
-              if (isFormValid) {
-                generateReport()
-                setIsOpen(false)
-              }
-            }}
-            disabled={!isFormValid}
-            className="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900"
-          >
-            <Download className="mr-2 h-5 w-5" />
-            Download Report
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
-}
-
-// Download modal component
-const renderDownloadModal = (
-  formData: FinancialFormData,
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void,
-  generateReport: () => void,
-  isOpen: boolean,
-  setIsOpen: (open: boolean) => void,
-) => {
-  const isFormValid = formData.contactInfo.name && formData.contactInfo.email && formData.contactInfo.phone
-
-  return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Download Your Report</DialogTitle>
-          <DialogDescription>To proceed with the download, please confirm your contact details.</DialogDescription>
-        </DialogHeader>
-        <div className="space-y-4 py-4">
-          <div>
-            <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-1">
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="contact-name"
-              name="contactInfo.name"
-              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Your name"
-              value={formData.contactInfo.name}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              id="contact-email"
-              name="contactInfo.email"
-              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Your email"
-              value={formData.contactInfo.email}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-700 mb-1">
-              Phone Number <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="tel"
-              id="contact-phone"
-              name="contactInfo.phone"
-              className="block w-full px-4 py-3 border-purple-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Your phone number"
-              value={formData.contactInfo.phone}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => setIsOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            type="button"
-            onClick={() => {
-              if (isFormValid) {
-                generateReport()
-                setIsOpen(false)
-              }
-            }}
-            disabled={!isFormValid}
-            className="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900"
-          >
-            <Download className="mr-2 h-5 w-5" />
-            Download Report
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
-}
-
 // Render the results step
 const renderResultsStep = (
   formData: FinancialFormData,
@@ -590,8 +666,6 @@ const renderResultsStep = (
   generateReport: () => void,
   setContactModalOpen: (open: boolean) => void,
   setDownloadModalOpen: (open: boolean) => void,
-  contactModal: React.ReactNode,
-  downloadModal: React.ReactNode,
 ) => {
   if (!calculationResults) return null
 
@@ -743,9 +817,6 @@ const renderResultsStep = (
           </div>
         </CardFooter>
       </Card>
-
-      {contactModal}
-      {downloadModal}
     </div>
   )
 }

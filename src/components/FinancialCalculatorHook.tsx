@@ -137,20 +137,25 @@ export const useFinancialCalculator = () => {
   const generateReport = () => {
     // Check if contact info is filled
     if (!formData.contactInfo.name || !formData.contactInfo.email || !formData.contactInfo.phone) {
-      alert("Please fill in all contact details to download the report")
-      return
+      alert("Please fill in all contact details to download the report");
+      return;
     }
 
     if (calculationResults) {
-      generateInvestmentPDF(formData, calculationResults)
-      setReportGenerated(true)
-      setShowConfetti(true)
-      setShowFullReport(true)
-      setCurrentStep(8) // Move to thank you step
+      // Call generateInvestmentPDF and check its return value
+      const pdfGenerated = generateInvestmentPDF(formData, calculationResults);
+    
+      // Only proceed if PDF generation was successful
+      if (pdfGenerated) {
+        setReportGenerated(true);
+        setShowConfetti(true);
+        setShowFullReport(true);
+        setCurrentStep(8); // Move to thank you step
 
-      // Store contact details in local storage
-      localStorage.setItem("financialContactDetails", JSON.stringify(formData.contactInfo))
-      setContactDetailsSubmitted(true)
+        // Store contact details in local storage
+        localStorage.setItem("financialContactDetails", JSON.stringify(formData.contactInfo));
+        setContactDetailsSubmitted(true);
+      }
     }
   }
 
@@ -232,4 +237,3 @@ export const useFinancialCalculator = () => {
     viewFullReport,
   }
 }
-

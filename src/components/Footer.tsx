@@ -1,4 +1,6 @@
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+// import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+// import { ExternalLink, MessageCircle, Phone } from "lucide-react";
+import { ExternalLink, MessageCircle, Phone, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -20,15 +22,44 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {[
-                { icon: Facebook, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: Instagram, href: "#" },
-                { icon: Linkedin, href: "#" },
+                // { 
+                //   icon: Facebook, 
+                //   href: "#",
+                //   label: "Facebook" 
+                // },
+                { 
+                  icon: ExternalLink, 
+                  href: "https://www.indiafilings.com/search/unicrore-software-solutions-llp-ACI-9441",
+                  label: "ExternalLink" 
+                },
+                { 
+                  icon: Instagram, 
+                  href: "https://www.instagram.com/unicrore/",
+                  label: "Instagram" 
+                },
+                { 
+                  icon: Linkedin, 
+                  href: "https://in.linkedin.com/company/unicrore",
+                  label: "LinkedIn" 
+                },
+                { 
+                  icon: MessageCircle, 
+                  href: "https://wa.me/919585585127",
+                  label: "WhatsApp" 
+                },
+                // { 
+                //   icon: Phone, 
+                //   href: "tel:+919585585127",
+                //   label: "Phone" 
+                // },
               ].map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
+                  aria-label={social.label}
                   className="w-10 h-10 rounded-full bg-purple-800 flex items-center justify-center transition-colors hover:bg-purple-700"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>

@@ -1,12 +1,6 @@
 import React , {useEffect} from "react";
 import { FinancialFormData, validateNumberInput } from "./FinancialFormTypes";
-import {
-  TrendingUp,
-  Coins,
-  Sparkles,
-  IndianRupee,
-  Target
-} from "lucide-react";
+import { TrendingUp, Coins, Sparkles, IndianRupee, Target } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -40,13 +34,13 @@ const FinancialSteps1: React.FC<FinancialSteps1Props> = ({
     const preventScroll = (e: WheelEvent) => {
       const target = e.target as HTMLElement;
       if (target.tagName === 'INPUT' && (target as HTMLInputElement).type === 'number') {
-        e.preventDefault();
+        // Instead of preventDefault, blur the input to lose focus
         target.blur();
       }
     };
 
     // Add the event listener to the document
-    document.addEventListener('wheel', preventScroll, { passive: false });
+    document.addEventListener('wheel', preventScroll);
 
     // Remove the event listener on cleanup
     return () => {
