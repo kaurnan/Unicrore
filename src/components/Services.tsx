@@ -79,7 +79,7 @@ const Services = () => {
           {/* <div className="inline-flex items-center justify-center p-2 bg-purple-100 rounded-full mb-4">
             <Zap className="w-6 h-6 text-purple-600" />
           </div> */}
-          <h2 className="section-title neon-glow">Our Services</h2>
+          <h2 className="section-title">Our Services</h2>
           <p className="section-subtitle text-purple-700/70">
             We provide specialized services to help you navigate the financial markets with confidence and precision.
           </p>
