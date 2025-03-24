@@ -58,11 +58,9 @@ export default function CalculatorResources({ open, onOpenChange }: CalculatorRe
             </div> */}
 
             <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-              <h4 className="font-medium text-gray-900 mb-2">How is this free? What's the catch?</h4>
+              <h4 className="font-medium text-gray-900 mb-2">Can I save my calculations?</h4>
               <p className="text-gray-600 text-sm">
-                There's no catch! We believe financial planning should be accessible to everyone. We offer this tool for
-                free to help people make better financial decisions. If you find it valuable, we simply ask you to share
-                it with others who might benefit.
+                Yes! You can track your progress over time, and export results to PDF.
               </p>
             </div>
           </TabsContent>
