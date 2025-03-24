@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronRight } from "lucide-react"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -23,23 +23,28 @@ const Header = () => {
     { name: "About", href: "#about" },
     { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
+    { name: "Calculator", href: "#financial-calculator" },
   ]
 
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6",
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-4 md:py-6",
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         <a href="#home" className="flex items-center">
-          <img src="/logo (purple).png" alt="Unicrore Logo" className="h-12 w-auto" />
-          <img src="/wordmark (purple).png" alt="Unicrore Written" className="hidden lg:block h-12 w-auto ml-2" />
+          <img src="/logo (purple).png" alt="Unicrore Logo" className="h-8 sm:h-10 md:h-12 w-auto" />
+          <img
+            src="/wordmark (purple).png"
+            alt="Unicrore Written"
+            className="hidden lg:block h-8 sm:h-10 md:h-12 w-auto ml-2"
+          />
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-8">
+        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-14">
           {navItems.map((item) => (
             <a
               key={item.name}
@@ -49,20 +54,20 @@ const Header = () => {
               {item.name}
             </a>
           ))}
-        </nav>
 
-        {/* Contact Button */}
-        <a
-          href="#contact"
-          className="hidden lg:inline-flex button-hover-effect bg-primary text-white px-5 py-2.5 rounded-md shadow-sm"
-        >
-          Get Started
-        </a>
+          {/* Contact Button - Desktop */}
+          <a
+            href="#contact"
+            className="inline-flex items-center button-hover-effect bg-primary text-white px-5 py-2.5 rounded-md shadow-sm ml-2"
+          >
+            Get Started
+          </a>
+        </nav>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden flex items-center"
+          className="lg:hidden flex items-center justify-center w-10 h-10"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6 text-purple-950" /> : <Menu className="w-6 h-6 text-purple-950" />}
@@ -72,11 +77,11 @@ const Header = () => {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "lg:hidden absolute top-full left-0 right-0 bg-white shadow-md transition-all duration-500 ease-in-out",
-          mobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 overflow-hidden",
+          "lg:hidden absolute top-full left-0 right-0 bg-white shadow-md transition-all duration-300 ease-in-out overflow-hidden",
+          mobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <div className="px-6 py-4 space-y-3">
+        <div className="px-4 sm:px-6 py-4 flex flex-col space-y-3">
           {navItems.map((item) => (
             <a
               key={item.name}
@@ -89,10 +94,10 @@ const Header = () => {
           ))}
           <a
             href="#contact"
-            className="block button-hover-effect bg-primary text-white px-5 py-2.5 rounded-md text-center shadow-sm mt-4"
+            className="flex items-center justify-center button-hover-effect bg-primary text-white px-5 py-2.5 rounded-md text-center shadow-sm mt-4"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Get Started
+            Get Started <ChevronRight className="ml-1 w-4 h-4" />
           </a>
         </div>
       </div>

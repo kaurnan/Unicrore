@@ -166,22 +166,22 @@ const FinancialCalculator = () => {
                   <p>Your information is secure and will only be used to provide you with investment advice.</p>
                 </div>
 
-                <div className="flex items-center gap-2">
+                {/* <div className="flex items-center gap-2">
                   <span className="text-sm text-gray-600">Found this helpful?</span>
                   <button className="flex items-center gap-1 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors">
                     <Share2 className="h-4 w-4" />
                     Share
                   </button>
-                </div>
+                </div> */}
               </div>
 
               {/* Free Guarantee Banner */}
-              <div className="mt-8 p-4 bg-green-50 border border-green-100 rounded-lg flex items-center justify-between">
+              <div className="mt-8 mb-4 p-4 bg-green-50 border border-green-100 rounded-lg flex items-center justify-between">
                 <div className="flex items-center">
                   <Gift className="h-8 w-8 text-green-600 mr-3" />
                   <div>
                     <h4 className="font-medium text-green-800">100% Free Financial Planning</h4>
-                    <p className="text-sm text-green-700">No credit card required, no hidden fees, no subscriptions</p>
+                    <p className="text-sm text-green-700">No hidden fees, or requirement</p>
                   </div>
                 </div>
                 <Badge className="bg-green-100 text-green-800 border-green-200">Always Free</Badge>

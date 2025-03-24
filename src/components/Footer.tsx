@@ -1,6 +1,5 @@
-// import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-// import { ExternalLink, MessageCircle, Phone } from "lucide-react";
-import { ExternalLink, MessageCircle, Phone, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { ExternalLink, MessageCircle, Linkedin, Instagram } from "lucide-react"
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -10,11 +9,7 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-display font-bold mb-6 flex items-center">
               <img src="/logo (white).png" alt="Unicrore Logo" className="h-10 w-auto mr-2 brightness-200" />
-              <img 
-                src="/wordmark (white).png" 
-                alt="Unicrore Written" 
-                className="h-12 w-auto ml-2" 
-              />
+              <img src="/wordmark (white).png" alt="Unicrore Written" className="h-12 w-auto ml-2" />
             </h3>
             <p className="text-purple-200/90 mb-6">
               Expert stock broking services with a personalized approach to help you navigate the financial markets with
@@ -22,36 +17,26 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {[
-                // { 
-                //   icon: Facebook, 
-                //   href: "#",
-                //   label: "Facebook" 
-                // },
-                { 
-                  icon: ExternalLink, 
+                {
+                  icon: ExternalLink,
                   href: "https://www.indiafilings.com/search/unicrore-software-solutions-llp-ACI-9441",
-                  label: "ExternalLink" 
+                  label: "ExternalLink",
                 },
-                { 
-                  icon: Instagram, 
+                {
+                  icon: Instagram,
                   href: "https://www.instagram.com/unicrore/",
-                  label: "Instagram" 
+                  label: "Instagram",
                 },
-                { 
-                  icon: Linkedin, 
+                {
+                  icon: Linkedin,
                   href: "https://in.linkedin.com/company/unicrore",
-                  label: "LinkedIn" 
+                  label: "LinkedIn",
                 },
-                { 
-                  icon: MessageCircle, 
+                {
+                  icon: MessageCircle,
                   href: "https://wa.me/919585585127",
-                  label: "WhatsApp" 
+                  label: "WhatsApp",
                 },
-                // { 
-                //   icon: Phone, 
-                //   href: "tel:+919585585127",
-                //   label: "Phone" 
-                // },
               ].map((social, index) => (
                 <a
                   key={index}
@@ -90,11 +75,11 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-6">Services</h4>
             <ul className="space-y-3">
               {[
-                { name: "Stock Trading", href: "#" },
-                { name: "Financial Analysis", href: "#" },
-                { name: "Portfolio Management", href: "#" },
-                { name: "Risk Management", href: "#" },
-                { name: "Wealth Advisory", href: "#" },
+                { name: "Stock Trading" },
+                { name: "Financial Analysis", href: "#financial-calculator" },
+                { name: "Portfolio Management" },
+                { name: "Risk Management" },
+                { name: "Wealth Advisory" },
               ].map((service, index) => (
                 <li key={index}>
                   <a href={service.href} className="text-purple-200/90 hover:text-white transition-colors inline-block">
@@ -109,16 +94,26 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-6">Legal</h4>
             <ul className="space-y-3">
               {[
-                { name: "Privacy Policy", href: "#" },
-                { name: "Terms of Service", href: "#" },
-                { name: "Cookie Policy", href: "#" },
-                { name: "Disclaimer", href: "#" },
-                { name: "License", href: "#" },
+                { name: "Privacy Policy", href: "/privacy-policy" },
+                { name: "Terms of Service", href: "/terms-of-service" },
+                { name: "Cookie Policy" },  // No href, not a link
+                { name: "Disclaimer", href: "/disclaimer" },
+                { name: "License" },  // No href, not a link
               ].map((legal, index) => (
                 <li key={index}>
-                  <a href={legal.href} className="text-purple-200/90 hover:text-white transition-colors inline-block">
+                  {/* <Link to={legal.href} className="text-purple-200/90 hover:text-white transition-colors inline-block">
                     {legal.name}
-                  </a>
+                  </Link> */}
+                  {legal.href ? (
+                    <Link
+                      to={legal.href}
+                      className="text-purple-200/90 hover:text-white transition-colors inline-block"
+                    >
+                      {legal.name}
+                    </Link>
+                  ) : (
+                    <span className="text-purple-200/90">{legal.name}</span>  // Display plain text if no href
+                  )}
                 </li>
               ))}
             </ul>
@@ -127,7 +122,12 @@ const Footer = () => {
 
         <div className="pt-8 text-center text-purple-200/70 text-sm">
           <p>&copy; {new Date().getFullYear()} Unicrore. All rights reserved.</p>
-          <p className="mt-2">SEBI Registration No: INZ000123456 | NSE/BSE Member: 12345</p>
+          <p className="mt-2">
+            NCO Securities and Share Broking Pvt Ltd NSE​ &​ BSE – SEBI Registration No: INZ000260334
+          </p>
+          <p className="mt-2">
+            CDSL: Depository services – SEBI Registration No: IN-DP-67-2015 Mutual Fund ARN: 132812
+          </p>
           <p className="mt-1 text-xs">
             Investments in securities market are subject to market risks; read all the related documents carefully
             before investing.
@@ -135,7 +135,8 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
+

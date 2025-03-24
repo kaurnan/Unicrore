@@ -1,8 +1,29 @@
-import { useEffect, useRef, useState } from "react"
+"use client"
+
+import { useEffect, useRef , useState} from "react"
 import { ArrowRight, ChevronDown, Zap } from "lucide-react"
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    // Update isDesktop based on window size
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768) // Set to true for desktop screens
+    }
+
+    // Listen for window resize
+    window.addEventListener("resize", handleResize)
+
+    // Initial check for screen size
+    handleResize()
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -110,14 +131,14 @@ const Hero = () => {
 
   // Stock ticker data
   const tickerSymbols = [
-    { symbol: "AAPL", price: "178.72", change: "+1.32%" },
-    { symbol: "MSFT", price: "412.41", change: "+0.87%" },
-    { symbol: "GOOGL", price: "156.37", change: "-0.43%" },
-    { symbol: "AMZN", price: "178.12", change: "+1.21%" },
-    { symbol: "META", price: "487.95", change: "+2.15%" },
-    { symbol: "TSLA", price: "177.58", change: "-1.03%" },
-    { symbol: "NVDA", price: "926.69", change: "+2.78%" },
-    { symbol: "JPM", price: "196.62", change: "+0.42%" },
+    { symbol: "RELIANCE", price: "2,942.75", change: "+1.32%" },
+    { symbol: "TCS", price: "3,812.40", change: "+0.87%" },
+    { symbol: "INFY", price: "1,456.30", change: "-0.43%" },
+    { symbol: "HDFCBANK", price: "1,678.25", change: "+1.21%" },
+    { symbol: "ICICIBANK", price: "1,087.95", change: "+2.15%" },
+    { symbol: "TATAMOTORS", price: "977.60", change: "-1.03%" },
+    { symbol: "WIPRO", price: "526.70", change: "+2.78%" },
+    { symbol: "SBIN", price: "796.65", change: "+0.42%" },
   ]
 
   return (
@@ -130,7 +151,7 @@ const Hero = () => {
         <div className="inline-flex items-center rounded-full border border-purple-300/20 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm text-purple-600 mb-8 animate-fade-in hover-lift">
           <Zap className="w-4 h-4 mr-2 text-accent animate-pulse" />
           <span className="flex items-center">
-            Live Trading Since 2010
+            Live Trading Since 2015
             <span className="ml-2 w-2 h-2 rounded-full bg-green-500 pulse-dot"></span>
           </span>
         </div>
@@ -151,7 +172,10 @@ const Hero = () => {
           financial goals.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 animate-fade-in mb-32" style={{ animationDelay: "600ms" }}>
+        <div
+          className="flex flex-col sm:flex-row gap-4 animate-fade-in mb-16 sm:mb-20 md:mb-24 lg:mb-32"
+          style={{ animationDelay: "600ms" }}
+        >
           <a
             href="#services"
             className="button-hover-effect bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-3 rounded-md shadow-sm font-medium flex items-center justify-center hover-lift animate-shake"
@@ -167,16 +191,18 @@ const Hero = () => {
           </a>
         </div>
       </div>
-      
+
       {/* Bouncing arrow */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {isDesktop && (
+      <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-28 left-1/2 transform -translate-x-1/2 animate-bounce">
         <a href="#services" className="text-purple-500 flex flex-col items-center">
           <div className="w-10 h-10 rounded-full border-2 border-purple-400/50 flex items-center justify-center neon-box">
             <ChevronDown className="w-5 h-5 text-purple-400" />
           </div>
         </a>
       </div>
-      
+      )}
+
       {/* Full-width ticker tape - positioned absolutely at the bottom */}
       <div className="absolute bottom-0 left-0 right-0 w-screen bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2 ticker-tape z-40">
         <div className="ticker-tape-content">
@@ -206,3 +232,4 @@ const Hero = () => {
 }
 
 export default Hero
+

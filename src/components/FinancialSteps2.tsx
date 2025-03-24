@@ -860,11 +860,11 @@ const renderThankYouStep = (resetCalculator: () => void, showConfetti: boolean, 
         <p className="text-sm text-gray-600 mb-3">
           Help others achieve financial freedom by sharing this tool with friends and family.
         </p>
-        <div className="flex justify-center gap-3">
+        {/* <div className="flex justify-center gap-3">
           <button className="p-2 rounded-full bg-blue-100 hover:bg-blue-200 transition-colors">
             <Share2 className="h-5 w-5 text-blue-600" />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   )
@@ -884,13 +884,13 @@ const renderFullReportStep = (
         <button
           type="button"
           onClick={resetCalculator}
-          className="inline-flex items-center px-6 py-3 border border-purple-300 rounded-xl shadow-sm text-base font-bold text-white-700 bg-gradient-to-r from-green-400 to-green-400 bg-white hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200"
+          className="inline-flex items-center px-6 py-3 border border-purple-300 rounded-xl shadow-sm text-base font-bold text-white bg-gradient-to-r from-purple-600 to-purple-600 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 hover-lift animate-shake"
         >
           <ArrowRight className="mr-2 h-5 w-5" />
           Begin a New Calculation
         </button>
 
-        <Badge className="bg-green-100 text-green-800 border-green-200 flex items-center gap-1 px-3 py-1.5 text-sm font-medium">
+        <Badge className="bg-green-100 hover:bg-green-200 text-green-800 border-green-200 flex items-center gap-1 px-3 py-1.5 text-sm font-medium">
           <Gift className="h-4 w-4 mr-1" />
           100% Free Service
         </Badge>
@@ -1021,10 +1021,10 @@ const renderFullReportStep = (
           <div className="text-xs text-gray-500 italic">
             This is a projected estimate based on assumed market returns of 12% annually. Actual returns may vary.
           </div>
-          <button className="flex items-center gap-1 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-xs text-gray-700 transition-colors">
+          {/* <button className="flex items-center gap-1 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-xs text-gray-700 transition-colors">
             <Share2 className="h-3 w-3" />
             Share Report
-          </button>
+          </button> */}
         </CardFooter>
       </Card>
 
@@ -1034,11 +1034,11 @@ const renderFullReportStep = (
         <p className="text-sm text-purple-700 text-center mb-4">
           We hope you found our free financial planning tool helpful. Share it with others who might benefit!
         </p>
-        <div className="flex justify-center gap-3">
+        {/* <div className="flex justify-center gap-3">
           <button className="p-2 rounded-full bg-purple-100 hover:bg-purple-200 transition-colors">
             <Share2 className="h-5 w-5 text-purple-600" />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   )
