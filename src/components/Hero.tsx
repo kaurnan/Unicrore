@@ -178,6 +178,7 @@ const Hero = () => {
         >
           <a
             href="https://signup.firstock.in/?p=usllp"
+            target="_blank"
             className="button-hover-effect bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-3 rounded-md shadow-sm font-medium flex items-center justify-center hover-lift animate-shake"
           >
             Open Demat Account
@@ -185,6 +186,7 @@ const Hero = () => {
           </a>
           <a
             href="https://tradingapp.thefirstock.tech/login"
+            target="_blank"
             className="button-hover-effect bg-white border border-purple-300/20 text-purple-600 px-8 py-3 rounded-md shadow-sm font-medium hover-lift animate-glitch"
           >
             Login

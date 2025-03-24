@@ -97,6 +97,7 @@ const Header = () => {
           ))}
           <a
             href="https://tradingapp.thefirstock.tech/login"
+            target="_blank"
             className="flex items-center justify-center button-hover-effect bg-primary text-white px-5 py-2.5 rounded-md text-center shadow-sm mt-4"
             onClick={() => setMobileMenuOpen(false)}
           >
