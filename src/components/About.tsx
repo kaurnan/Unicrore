@@ -216,7 +216,7 @@ const About = () => {
                 At Unicrore, we don't just manage investments—we build a path to lasting financial success.
               </p>
 
-              <div className="space-y-4 mb-8 max-w-2xl mx-auto lg:mx-0">
+              <div className="space-y-4 mb-8 max-w-2xl mx-auto lg:mx-0 hidden lg:block">
                 {[
                   "Expert financial team with 15+ years experience",
                   "Investment strategies tailored to your unique goals",

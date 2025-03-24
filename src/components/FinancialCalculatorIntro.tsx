@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import AnimatedSection from "./AnimatedSection"
-import { ArrowRight, Sparkles, CheckCircle, Users, Award, LifeBuoy } from "lucide-react"
+import { ArrowRight, Sparkles, CheckCircle, Users, Award, ArrowRightCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import CalculatorResources from "./CalculatorResources"
 
@@ -212,11 +212,11 @@ const FinancialCalculatorHook = ({ onStart }: FinancialHookProps) => {
             </div>
             <div className="flex gap-2">
               <button
-                className="px-4 py-2 rounded-full bg-purple-100 hover:bg-purple-200 transition-colors flex items-center gap-2 text-purple-700 font-medium"
+                className="px-4 py-3 rounded-full bg-purple-100 hover:bg-purple-200 transition-colors flex items-center gap-2 text-purple-700 font-medium"
                 onClick={() => setResourcesModalOpen(true)}
               >
-                <LifeBuoy className="h-4 w-4" />
-                Resources
+                <ArrowRightCircle className="h-5 w-5 animate-bounce" />
+                Know More
               </button>
             </div>
           </div>

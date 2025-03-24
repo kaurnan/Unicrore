@@ -49,7 +49,10 @@ const Header = () => {
             <a
               key={item.name}
               href={item.href}
-              className="relative font-medium text-purple-800 hover:text-purple-950 transition-colors after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-bottom-right hover:after:origin-bottom-left"
+              className={cn(
+                "relative font-medium text-purple-800 hover:text-purple-950 transition-colors after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-bottom-right hover:after:origin-bottom-left",
+                item.name === "Calculator" && "after:scale-x-100 after:bg-purple-800"
+              )}
             >
               {item.name}
             </a>
@@ -57,10 +60,10 @@ const Header = () => {
 
           {/* Contact Button - Desktop */}
           <a
-            href="#contact"
+            href="https://tradingapp.thefirstock.tech/login"
             className="inline-flex items-center button-hover-effect bg-primary text-white px-5 py-2.5 rounded-md shadow-sm ml-2"
           >
-            Get Started
+            Login
           </a>
         </nav>
 
@@ -93,11 +96,11 @@ const Header = () => {
             </a>
           ))}
           <a
-            href="#contact"
+            href="https://tradingapp.thefirstock.tech/login"
             className="flex items-center justify-center button-hover-effect bg-primary text-white px-5 py-2.5 rounded-md text-center shadow-sm mt-4"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Get Started <ChevronRight className="ml-1 w-4 h-4" />
+            Login <ChevronRight className="ml-1 w-4 h-4" />
           </a>
         </div>
       </div>

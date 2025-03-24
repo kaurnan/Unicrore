@@ -46,7 +46,7 @@ const FinancialCalculator = () => {
         <div className="relative pt-1">
           <div className="flex items-center justify-between mb-2">
             <div>
-              <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-purple-600 bg-green-400">
+              <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-white bg-green-600">
                 Progress
               </span>
             </div>
@@ -54,10 +54,10 @@ const FinancialCalculator = () => {
               <span className="text-medium font-semibold inline-block text-green-600">{Math.round(progress)}%</span>
             </div>
           </div>
-          <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-300">
+          <div className="overflow-hidden h-2 mb-4 text-xs flex rounded border bg-white">
             <div
               style={{ width: `${progress}%` }}
-              className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-purple-700 to-purple-800"
+              className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-green-600 to-green-600"
             ></div>
           </div>
           <div className="text-xs text-purple-600 text-center">
@@ -184,7 +184,7 @@ const FinancialCalculator = () => {
                     <p className="text-sm text-green-700">No hidden fees, or requirement</p>
                   </div>
                 </div>
-                <Badge className="bg-green-100 text-green-800 border-green-200">Always Free</Badge>
+                <Badge className="bg-green-100 text-green-800 border-green-200 pointer-events-none">Always Free</Badge>
               </div>
             </AnimatedSection>
           </div>

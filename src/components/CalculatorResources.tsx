@@ -12,7 +12,7 @@ interface CalculatorResourcesProps {
 export default function CalculatorResources({ open, onOpenChange }: CalculatorResourcesProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl w-full h-[600px] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-800">
             Resources & Support
@@ -20,12 +20,19 @@ export default function CalculatorResources({ open, onOpenChange }: CalculatorRe
         </DialogHeader>
 
         <Tabs defaultValue="faqs" className="mt-4">
-          <TabsList className="grid w-full grid-cols-2 bg-purple-200">
-            <TabsTrigger value="faqs" className="tab-trigger">Frequently Asked Questions</TabsTrigger>
-            <TabsTrigger value="stories" className="tab-trigger">Success Stories</TabsTrigger>
+          <TabsList className="w-full flex bg-purple-200 rounded-lg p-1 overflow-hidden">
+            <TabsTrigger value="faqs" className="flex-1 py-2 px-3 text-sm md:text-base whitespace-normal text-center">
+              Frequently Asked Questions
+            </TabsTrigger>
+            <TabsTrigger
+              value="stories"
+              className="flex-1 py-2 px-3 text-sm md:text-base whitespace-normal text-center"
+            >
+              Success Stories
+            </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="faqs" className="mt-4 space-y-4">
+          <TabsContent value="faqs" className="mt-4 space-y-4 h-[450px] overflow-y-auto pr-2">
             <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
               <h4 className="font-medium text-gray-900 mb-2">Is this calculator really free?</h4>
               <p className="text-gray-600 text-sm">
@@ -51,16 +58,16 @@ export default function CalculatorResources({ open, onOpenChange }: CalculatorRe
             </div> */}
 
             <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                <h4 className="font-medium text-gray-900 mb-2">How is this free? What's the catch?</h4>
-                <p className="text-gray-600 text-sm">
-                    There's no catch! We believe financial planning should be accessible to everyone. We offer this tool for
-                    free to help people make better financial decisions. If you find it valuable, we simply ask you to share
-                    it with others who might benefit.
-                </p>
-            </div> 
+              <h4 className="font-medium text-gray-900 mb-2">How is this free? What's the catch?</h4>
+              <p className="text-gray-600 text-sm">
+                There's no catch! We believe financial planning should be accessible to everyone. We offer this tool for
+                free to help people make better financial decisions. If you find it valuable, we simply ask you to share
+                it with others who might benefit.
+              </p>
+            </div>
           </TabsContent>
 
-          <TabsContent value="stories" className="mt-4">
+          <TabsContent value="stories" className="mt-4 h-[450px] overflow-y-auto pr-2">
             <div className="grid grid-cols-1 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-lg border border-purple-100 flex flex-col">
                 <div className="flex items-start mb-4">

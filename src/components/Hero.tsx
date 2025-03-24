@@ -177,17 +177,17 @@ const Hero = () => {
           style={{ animationDelay: "600ms" }}
         >
           <a
-            href="#services"
+            href="https://signup.firstock.in/?p=usllp"
             className="button-hover-effect bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-3 rounded-md shadow-sm font-medium flex items-center justify-center hover-lift animate-shake"
           >
-            Explore Services
+            Open Demat Account
             <ArrowRight className="ml-2 w-4 h-4" />
           </a>
           <a
-            href="#about"
+            href="https://tradingapp.thefirstock.tech/login"
             className="button-hover-effect bg-white border border-purple-300/20 text-purple-600 px-8 py-3 rounded-md shadow-sm font-medium hover-lift animate-glitch"
           >
-            About Us
+            Login
           </a>
         </div>
       </div>

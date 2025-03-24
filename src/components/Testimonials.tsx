@@ -62,7 +62,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-gradient-to-b from-purple-900 to-purple-800 text-white">
+    <section id="testimonials" className="py-24 bg-gradient-to-b from-purple-900 to-purple-800 text-white">
       <div className="section-container text-center mb-16">
         <MessageSquare className="w-6 h-6 text-accent mx-auto mb-4" />
         <h2 className="text-4xl font-bold text-white">Client Testimonials</h2>
