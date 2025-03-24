@@ -6,6 +6,16 @@ import { ArrowRight, ChevronDown, Zap } from "lucide-react"
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isDesktop, setIsDesktop] = useState(false)
+  const [tickerData, setTickerData] = useState([
+    { symbol: "RELIANCE", price: 2942.75, prevPrice: 2942.75, change: "+1.32%" },
+    { symbol: "TCS", price: 3812.40, prevPrice: 3812.40, change: "+0.87%" },
+    { symbol: "INFY", price: 1456.30, prevPrice: 1456.30, change: "-0.43%" },
+    { symbol: "HDFCBANK", price: 1678.25, prevPrice: 1678.25, change: "+1.21%" },
+    { symbol: "ICICIBANK", price: 1087.95, prevPrice: 1087.95, change: "+2.15%" },
+    { symbol: "TATAMOTORS", price: 977.60, prevPrice: 977.60, change: "-1.03%" },
+    { symbol: "WIPRO", price: 526.70, prevPrice: 526.70, change: "+2.78%" },
+    { symbol: "SBIN", price: 796.65, prevPrice: 796.65, change: "+0.42%" },
+  ])
 
   useEffect(() => {
     // Update isDesktop based on window size
@@ -23,6 +33,26 @@ const Hero = () => {
     return () => {
       window.removeEventListener("resize", handleResize)
     }
+  }, [])
+
+  useEffect(() => {
+    // Update ticker prices every 2 seconds
+    const interval = setInterval(() => {
+      setTickerData(prevData => 
+        prevData.map(stock => {
+          const change = (Math.random() - 0.5) * 5 // Random change between -2.5 and +2.5
+          const newPrice = Number((stock.price + change).toFixed(2))
+          const percentChange = ((newPrice - stock.prevPrice) / stock.prevPrice * 100).toFixed(2)
+          return {
+            ...stock,
+            price: newPrice,
+            change: `${percentChange > 0 ? '+' : ''}${percentChange}%`
+          }
+        })
+      )
+    }, 2000)
+
+    return () => clearInterval(interval)
   }, [])
 
   useEffect(() => {
@@ -129,18 +159,6 @@ const Hero = () => {
     }
   }, [])
 
-  // Stock ticker data
-  const tickerSymbols = [
-    { symbol: "RELIANCE", price: "2,942.75", change: "+1.32%" },
-    { symbol: "TCS", price: "3,812.40", change: "+0.87%" },
-    { symbol: "INFY", price: "1,456.30", change: "-0.43%" },
-    { symbol: "HDFCBANK", price: "1,678.25", change: "+1.21%" },
-    { symbol: "ICICIBANK", price: "1,087.95", change: "+2.15%" },
-    { symbol: "TATAMOTORS", price: "977.60", change: "-1.03%" },
-    { symbol: "WIPRO", price: "526.70", change: "+2.78%" },
-    { symbol: "SBIN", price: "796.65", change: "+0.42%" },
-  ]
-
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Canvas for animated charts */}
@@ -208,20 +226,30 @@ const Hero = () => {
       {/* Full-width ticker tape - positioned absolutely at the bottom */}
       <div className="absolute bottom-0 left-0 right-0 w-screen bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2 ticker-tape z-40">
         <div className="ticker-tape-content">
-          {tickerSymbols.map((stock, index) => (
+          {tickerData.map((stock, index) => (
             <span key={index} className="inline-flex items-center mx-6">
               <strong>{stock.symbol}</strong>
-              <span className="ml-2">{stock.price}</span>
+              <span className={`ml-2 transition-colors duration-300 ${
+                stock.price > stock.prevPrice ? 'text-green-400' : 
+                stock.price < stock.prevPrice ? 'text-red-400' : 'text-white'
+              }`}>
+                {stock.price.toFixed(2)}
+              </span>
               <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
                 {stock.change}
               </span>
             </span>
           ))}
           {/* Duplicate to ensure smooth transition */}
-          {tickerSymbols.map((stock, index) => (
+          {tickerData.map((stock, index) => (
             <span key={`repeat-${index}`} className="inline-flex items-center mx-6">
               <strong>{stock.symbol}</strong>
-              <span className="ml-2">{stock.price}</span>
+              <span className={`ml-2 transition-colors duration-300 ${
+                stock.price > stock.prevPrice ? 'text-green-400' : 
+                stock.price < stock.prevPrice ? 'text-red-400' : 'text-white'
+              }`}>
+                {stock.price.toFixed(2)}
+              </span>
               <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
                 {stock.change}
               </span>
@@ -234,4 +262,3 @@ const Hero = () => {
 }
 
 export default Hero
-
