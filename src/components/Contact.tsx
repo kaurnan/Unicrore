@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import AnimatedSection from "./AnimatedSection"
-import { Mail, MapPin, Phone, Send } from "lucide-react"
+import { Mail, MapPin, Phone, Send } from 'lucide-react'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,21 +21,36 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Encode form data for Netlify
+      const formData = new FormData(e.target as HTMLFormElement)
+      
+      // Submit the form data to Netlify
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
+      })
+      
+      if (response.ok) {
+        setSubmitted(true)
+        // Reset after showing success message
+        setTimeout(() => {
+          setSubmitted(false)
+          setFormData({ name: "", email: "", phone: "", message: "" })
+        }, 5000)
+      } else {
+        console.error("Form submission failed")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+    } finally {
       setIsSubmitting(false)
-      setSubmitted(true)
-
-      // Reset after showing success message
-      setTimeout(() => {
-        setSubmitted(false)
-        setFormData({ name: "", email: "", phone: "", message: "" })
-      }, 5000)
-    }, 1500)
+    }
   }
 
   const ContactInfo = ({ icon: Icon, title, content, link = null }) => (
@@ -106,7 +121,22 @@ const Contact = () => {
                   <p className="text-green-700">Your message has been received. We'll contact you shortly.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form 
+                  onSubmit={handleSubmit} 
+                  className="space-y-6"
+                  data-netlify="true"
+                  name="contact"
+                  method="POST"
+                  netlify-honeypot="bot-field"
+                >
+                  {/* Hidden Netlify form fields */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  <p className="hidden">
+                    <label>
+                      Don't fill this out if you're human: <input name="bot-field" />
+                    </label>
+                  </p>
+
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-purple-700 mb-1">
                       Full Name
@@ -214,4 +244,3 @@ const Contact = () => {
 }
 
 export default Contact
-

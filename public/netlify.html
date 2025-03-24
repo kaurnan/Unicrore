@@ -1,0 +1,38 @@
+<!-- A hidden form that Netlify can discover during deployment -->
+<!-- This is needed for Netlify Forms to work with SPAs like React -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Netlify Forms</title>
+</head>
+<body>
+  <!-- Contact form -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <textarea name="message"></textarea>
+  </form>
+  
+  <!-- Contact modal form -->
+  <form name="contact-modal" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="investmentType" />
+    <input type="text" name="sipAmount" />
+    <input type="text" name="lumpsumAmount" />
+  </form>
+  
+  <!-- Download modal form -->
+  <form name="download-modal" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="investmentType" />
+    <input type="text" name="sipAmount" />
+    <input type="text" name="lumpsumAmount" />
+  </form>
+</body>
+</html>
+
