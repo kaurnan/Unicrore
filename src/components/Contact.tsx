@@ -4,6 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import AnimatedSection from "./AnimatedSection"
 import { Mail, MapPin, Phone, Send } from "lucide-react"
+import axios from "axios"
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,45 +16,36 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setError("")
 
-    try {
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          "form-name": "contact",
-          ...formData,
-        }).toString(),
-      })
-
-      if (response.ok) {
+    axios({
+      method: "POST",
+      url: "https://formspree.io/f/xnnpznee",
+      data: formData,
+    })
+      .then((response) => {
+        setIsSubmitting(false)
         setSubmitted(true)
-        setFormData({ name: "", email: "", phone: "", message: "" })
 
         // Reset after showing success message
         setTimeout(() => {
           setSubmitted(false)
+          setFormData({ name: "", email: "", phone: "", message: "" })
         }, 5000)
-      } else {
-        throw new Error("Form submission failed")
-      }
-    } catch (err) {
-      setError("There was a problem submitting your form. Please try again.")
-      console.error(err)
-    } finally {
-      setIsSubmitting(false)
-    }
+      })
+      .catch((error) => {
+        setIsSubmitting(false)
+        console.error("Submission error:", error)
+        // You could add error handling UI here
+      })
   }
 
   const ContactInfo = ({ icon: Icon, title, content, link = null }) => (
@@ -124,24 +116,7 @@ const Contact = () => {
                   <p className="text-green-700">Your message has been received. We'll contact you shortly.</p>
                 </div>
               ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-6"
-                  data-netlify="true"
-                  name="contact"
-                  method="POST"
-                  netlify-honeypot="bot-field"
-                >
-                  {/* Hidden input for Render/Netlify */}
-                  <input type="hidden" name="form-name" value="contact" />
-                  <p className="hidden">
-                    <label>
-                      Don't fill this out if you're human: <input name="bot-field" />
-                    </label>
-                  </p>
-
-                  {error && <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">{error}</div>}
-
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-purple-700 mb-1">
                       Full Name
@@ -166,7 +141,7 @@ const Contact = () => {
                       <input
                         type="email"
                         id="email"
-                        name="email"
+                        name="_replyto"
                         value={formData.email}
                         onChange={handleChange}
                         required
