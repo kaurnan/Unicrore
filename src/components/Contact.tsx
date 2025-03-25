@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import AnimatedSection from "./AnimatedSection"
-import { Mail, MapPin, Phone, Send } from 'lucide-react'
+import { Mail, MapPin, Phone, Send } from "lucide-react"
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +15,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -24,30 +25,32 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError("")
 
     try {
-      // Encode form data for Netlify
-      const formData = new FormData(e.target as HTMLFormElement)
-      
-      // Submit the form data to Netlify
       const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        body: new URLSearchParams({
+          "form-name": "contact",
+          ...formData,
+        }).toString(),
       })
-      
+
       if (response.ok) {
         setSubmitted(true)
+        setFormData({ name: "", email: "", phone: "", message: "" })
+
         // Reset after showing success message
         setTimeout(() => {
           setSubmitted(false)
-          setFormData({ name: "", email: "", phone: "", message: "" })
         }, 5000)
       } else {
-        console.error("Form submission failed")
+        throw new Error("Form submission failed")
       }
-    } catch (error) {
-      console.error("Error submitting form:", error)
+    } catch (err) {
+      setError("There was a problem submitting your form. Please try again.")
+      console.error(err)
     } finally {
       setIsSubmitting(false)
     }
@@ -121,21 +124,23 @@ const Contact = () => {
                   <p className="text-green-700">Your message has been received. We'll contact you shortly.</p>
                 </div>
               ) : (
-                <form 
-                  onSubmit={handleSubmit} 
+                <form
+                  onSubmit={handleSubmit}
                   className="space-y-6"
                   data-netlify="true"
                   name="contact"
                   method="POST"
                   netlify-honeypot="bot-field"
                 >
-                  {/* Hidden Netlify form fields */}
+                  {/* Hidden input for Render/Netlify */}
                   <input type="hidden" name="form-name" value="contact" />
                   <p className="hidden">
                     <label>
                       Don't fill this out if you're human: <input name="bot-field" />
                     </label>
                   </p>
+
+                  {error && <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">{error}</div>}
 
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-purple-700 mb-1">
@@ -244,3 +249,4 @@ const Contact = () => {
 }
 
 export default Contact
+
