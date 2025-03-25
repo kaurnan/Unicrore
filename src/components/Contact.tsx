@@ -26,10 +26,16 @@ const Contact = () => {
     e.preventDefault()
     setIsSubmitting(true)
 
+    // Create a copy of the form data and rename email to _replyto for Formspree
+    const formspreeData = {
+      ...formData,
+      _replyto: formData.email, // Add this special field for Formspree
+    }
+
     axios({
       method: "POST",
       url: "https://formspree.io/f/xnnpznee",
-      data: formData,
+      data: formspreeData,
     })
       .then((response) => {
         setIsSubmitting(false)
@@ -141,7 +147,7 @@ const Contact = () => {
                       <input
                         type="email"
                         id="email"
-                        name="_replyto"
+                        name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
