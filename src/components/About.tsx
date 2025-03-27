@@ -116,7 +116,7 @@ const About = () => {
             performance: 27.4,
             years: 6,
             clients: 500,
-            assets: 800,
+            assets: 100,
             retention: 100,
           }
 
