@@ -84,9 +84,9 @@ const Hero = () => {
       }
 
       const colors = [
-        "rgba(124, 58, 237, 0.5)", // Purple
-        "rgba(139, 92, 246, 0.5)", // Purple lighter
-        "rgba(109, 40, 217, 0.5)", // Purple darker
+        "rgba(255, 255, 255, 0.2)", // White
+        "rgba(255, 255, 255, 0.4)", // White lighter
+        "rgba(255, 255, 255, 0.6)", // White darker
         "rgba(234, 179, 8, 0.5)", // Amber
         "rgba(245, 158, 11, 0.5)", // Amber darker
       ]
@@ -160,13 +160,13 @@ const Hero = () => {
   }, [])
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-purple-900">
       {/* Canvas for animated charts */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-40" />
 
       {/* Content */}
       <div className="relative z-10 section-container flex flex-col items-center justify-center text-center pt-20">
-        <div className="inline-flex items-center rounded-full border border-purple-300/20 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm text-purple-600 mb-8 animate-fade-in hover-lift">
+        <div className="inline-flex items-center rounded-full border border-white/20 bg-purple-800/90 backdrop-blur-sm px-4 py-1.5 text-sm text-white mb-8 animate-fade-in hover-lift">
           <Zap className="w-4 h-4 mr-2 text-accent animate-pulse" />
           <span className="flex items-center">
             Live Trading Since 2015
@@ -175,15 +175,43 @@ const Hero = () => {
         </div>
 
         <h1
-          className="text-5xl md:text-6xl lg:text-7xl font-bold text-purple-950 mb-6 tracking-tight animate-fade-in neon-glow"
+          className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight animate-fade-in"
           style={{ animationDelay: "200ms" }}
         >
-          Trade <span className="animate-pulse text-purple-600">Smarter</span>,<br />
-          Invest <span className="animate-pulse text-purple-600">Better</span>
+          Trade{" "}
+          <span className="animate-text-color">
+            <style>
+              {`
+                @keyframes textColor {
+                  0% { color: #FFD700; }  /* Gold */
+                  16.66% { color: #FF69B4; }  /* Hot Pink */
+                  33.33% { color: #00FFFF; }  /* Cyan */
+                  50% { color: #98FB98; }  /* Pale Green */
+                  66.66% { color: #DDA0DD; }  /* Plum */
+                  83.33% { color: #87CEEB; }  /* Sky Blue */
+                  100% { color: #FFD700; }  /* Back to Gold */
+                }
+                .animate-text-color {
+                  animation: textColor 6s linear infinite;
+                  text-shadow: 0 0 3px currentColor;
+                  transition: color 0.3s ease;
+                }
+              `}
+            </style>
+            Smarter
+          </span>
+          ,<br />
+          Invest{" "}
+          <span 
+            className="animate-text-color"
+            style={{ animationDelay: "3s" }}
+          >
+            Better
+          </span>
         </h1>
 
         <p
-          className="text-lg md:text-xl text-purple-800 max-w-2xl mb-10 leading-relaxed text-balance animate-fade-in"
+          className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 leading-relaxed text-balance animate-fade-in"
           style={{ animationDelay: "400ms" }}
         >
           Unicrore provides strategic investment solutions with a personalized approach to help you achieve your
@@ -197,7 +225,7 @@ const Hero = () => {
           <a
             href="https://signup.firstock.in/?p=usllp"
             target="_blank"
-            className="button-hover-effect bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-3 rounded-md shadow-sm font-medium flex items-center justify-center hover-lift animate-shake"
+            className="button-hover-effect bg-white text-purple-800 px-8 py-3 rounded-md shadow-sm font-medium flex items-center justify-center hover-lift animate-shake"
           >
             Open Demat Account
             <ArrowRight className="ml-2 w-4 h-4" />
@@ -205,7 +233,7 @@ const Hero = () => {
           <a
             href="https://tradingapp.thefirstock.tech/login"
             target="_blank"
-            className="button-hover-effect bg-white border border-purple-300/20 text-purple-600 px-8 py-3 rounded-md shadow-sm font-medium hover-lift animate-glitch"
+            className="button-hover-effect bg-purple-800 border border-white/20 text-white px-8 py-3 rounded-md shadow-sm font-medium hover-lift animate-glitch"
           >
             Login
           </a>
@@ -215,27 +243,27 @@ const Hero = () => {
       {/* Bouncing arrow */}
       {isDesktop && (
       <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-28 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#services" className="text-purple-500 flex flex-col items-center">
-          <div className="w-10 h-10 rounded-full border-2 border-purple-400/50 flex items-center justify-center neon-box">
-            <ChevronDown className="w-5 h-5 text-purple-400" />
+        <a href="#services" className="text-white flex flex-col items-center">
+          <div className="w-10 h-10 rounded-full border-2 border-white/50 flex items-center justify-center neon-box">
+            <ChevronDown className="w-5 h-5 text-white" />
           </div>
         </a>
       </div>
       )}
 
       {/* Full-width ticker tape - positioned absolutely at the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 w-screen bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2 ticker-tape z-40">
+      <div className="absolute bottom-0 left-0 right-0 w-screen bg-white text-purple-800 py-2 ticker-tape z-40">
         <div className="ticker-tape-content">
           {tickerData.map((stock, index) => (
             <span key={index} className="inline-flex items-center mx-6">
               <strong>{stock.symbol}</strong>
               <span className={`ml-2 transition-colors duration-300 ${
-                stock.price > stock.prevPrice ? 'text-green-400' : 
-                stock.price < stock.prevPrice ? 'text-red-400' : 'text-white'
+                stock.price > stock.prevPrice ? 'text-green-600' : 
+                stock.price < stock.prevPrice ? 'text-red-600' : 'text-purple-800'
               }`}>
                 {stock.price.toFixed(2)}
               </span>
-              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
+              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-600" : "text-red-600"}`}>
                 {stock.change}
               </span>
             </span>
@@ -245,12 +273,12 @@ const Hero = () => {
             <span key={`repeat-${index}`} className="inline-flex items-center mx-6">
               <strong>{stock.symbol}</strong>
               <span className={`ml-2 transition-colors duration-300 ${
-                stock.price > stock.prevPrice ? 'text-green-400' : 
-                stock.price < stock.prevPrice ? 'text-red-400' : 'text-white'
+                stock.price > stock.prevPrice ? 'text-green-600' : 
+                stock.price < stock.prevPrice ? 'text-red-600' : 'text-purple-800'
               }`}>
                 {stock.price.toFixed(2)}
               </span>
-              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
+              <span className={`ml-2 ${stock.change.startsWith("+") ? "text-green-600" : "text-red-600"}`}>
                 {stock.change}
               </span>
             </span>
