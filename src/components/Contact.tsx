@@ -88,9 +88,9 @@ const Contact = () => {
               <h3 className="text-2xl font-bold mb-6 text-purple-900">Get in Touch</h3>
 
               <div className="space-y-6 mb-8">
-                <ContactInfo icon={Phone} title="Phone" content="+91 98765 43210" link="tel:+919876543210" />
+                <ContactInfo icon={Phone} title="Phone" content="+91 98765 43210" link="tel:+91 958-5585-127" />
                 <ContactInfo icon={Mail} title="Email" content="info@unicrore.com" link="mailto:info@unicrore.com" />
-                <ContactInfo icon={MapPin} title="Office" content="Trade Centre, Bandra Kurla Complex, Mumbai, India" />
+                <ContactInfo icon={MapPin} title="Office" content="Vazhakkala, Ernakulam, Kakkanad, Kerala 682021" />
               </div>
 
               <div className="bg-purple-50 rounded-xl p-6">
