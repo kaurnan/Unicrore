@@ -20,7 +20,7 @@ const About = () => {
   const stats = [
     { figure: "6", label: "Years in Business", icon: Clock, counterKey: "years" },
     { figure: "500+", label: "Satisfied Clients", icon: Users, counterKey: "clients" },
-    { figure: "₹800Cr+", label: "Assets Managed", icon: LineChart, counterKey: "assets" },
+    { figure: "₹100Cr+", label: "Assets Managed", icon: LineChart, counterKey: "assets" },
     { figure: "100%", label: "Client Retention", icon: Shield, counterKey: "retention" },
   ]
 

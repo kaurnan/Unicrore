@@ -46,7 +46,7 @@ const Hero = () => {
           return {
             ...stock,
             price: newPrice,
-            change: `${percentChange > 0 ? '+' : ''}${percentChange}%`
+            change: `${Number(percentChange) > 0 ? '+' : ''}${percentChange}%`
           }
         })
       )
@@ -62,8 +62,27 @@ const Hero = () => {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    let width = (canvas.width = window.innerWidth)
-    let height = (canvas.height = window.innerHeight)
+    const updateCanvasSize = () => {
+      // Get the actual viewport dimensions
+      const viewportWidth = window.innerWidth
+      const viewportHeight = window.innerHeight
+
+      // Set canvas dimensions to match viewport
+      canvas.style.width = `${viewportWidth}px`
+      canvas.style.height = `${viewportHeight}px`
+
+      // Set actual canvas dimensions (accounting for pixel ratio for sharp rendering)
+      const pixelRatio = window.devicePixelRatio || 1
+      canvas.width = viewportWidth * pixelRatio
+      canvas.height = viewportHeight * pixelRatio
+
+      // Scale the context to account for pixel ratio
+      ctx.scale(pixelRatio, pixelRatio)
+
+      return { width: viewportWidth, height: viewportHeight }
+    }
+
+    let { width, height } = updateCanvasSize()
 
     // Stock chart line points
     const linesCount = 5
@@ -100,8 +119,18 @@ const Hero = () => {
 
     // Handle window resize
     const handleResize = () => {
-      width = canvas.width = window.innerWidth
-      height = canvas.height = window.innerHeight
+      const newDimensions = updateCanvasSize()
+      width = newDimensions.width
+      height = newDimensions.height
+
+      // Adjust points for new dimensions
+      linesData.forEach(line => {
+        const pointsCount = line.points.length
+        line.points.forEach((point, i) => {
+          point.x = i * (width / (pointsCount - 1))
+          point.y = height / 2 + (Math.random() - 0.5) * (height / 6)
+        })
+      })
     }
 
     window.addEventListener("resize", handleResize)
@@ -162,7 +191,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-purple-900">
       {/* Canvas for animated charts */}
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-40" />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-40 w-full h-full" />
 
       {/* Content */}
       <div className="relative z-10 section-container flex flex-col items-center justify-center text-center pt-20">

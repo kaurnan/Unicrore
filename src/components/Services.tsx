@@ -59,9 +59,9 @@ const Services = () => {
     },
     {
       icon: Zap,
-      title: "Crypto Trading",
+      title: "Unlisted Shares",
       description:
-        "Navigate the exciting world of cryptocurrencies with our expert guidance and secure trading platforms.",
+        "Unlock exclusive investment opportunities in high-potential companies before they go public. Gain early access with expert insights and secure transactions.",
       delay: 400,
     },
     {
