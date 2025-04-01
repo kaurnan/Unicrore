@@ -8,8 +8,6 @@ const testimonials = [
   {
     name: "Rajiv Mehta",
     position: "CEO, Tech Innovators",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     quote:
       "Unicrore has transformed my investment strategy. Their insights and personalized approach have consistently delivered returns above market average.",
     stars: 5,
@@ -17,8 +15,6 @@ const testimonials = [
   {
     name: "Priya Sharma", 
     position: "Director, Global Solutions",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     quote:
       "Working with Unicrore has been incredibly rewarding. Their team's attention to detail and market knowledge is unparalleled in the industry.",
     stars: 5,
@@ -26,8 +22,6 @@ const testimonials = [
   {
     name: "Amit Patel",
     position: "Founder, Startup Ventures", 
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     quote:
       "The strategic guidance from Unicrore helped me navigate volatile markets with confidence. I've recommended them to all my colleagues.",
     stars: 5,
@@ -35,8 +29,6 @@ const testimonials = [
   {
     name: "Sneha Gupta",
     position: "CFO, Horizon Enterprises",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1761&q=80",
     quote:
       "I've been with Unicrore for over 5 years, and their consistent performance and transparent communication have been exceptional.",
     stars: 5,
@@ -96,7 +88,7 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="relative px-12"> {/* Added padding to prevent overlap */}
+        <div className="relative px-12">
           <div className="overflow-hidden">
             <div 
               className="flex transition-transform duration-500 ease-in-out"
@@ -107,16 +99,6 @@ const Testimonials = () => {
                   <Card className="bg-purple-800/50 backdrop-blur-lg border-purple-600/20 h-full transform transition-all duration-300 hover:scale-105">
                     <CardHeader className="pb-4">
                       <div className="flex items-center gap-4 mb-4">
-                        <div className="relative">
-                          <img 
-                            src={testimonial.image} 
-                            alt={testimonial.name} 
-                            className="w-16 h-16 rounded-full object-cover border-2 border-purple-400"
-                          />
-                          <div className="absolute -bottom-1 -right-1 bg-purple-500 p-1 rounded-full">
-                            <Quote size={12} className="text-white" />
-                          </div>
-                        </div>
                         <div className="text-left">
                           <h4 className="font-semibold text-white">{testimonial.name}</h4>
                           <p className="text-purple-300 text-sm">{testimonial.position}</p>
